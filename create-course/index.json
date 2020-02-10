@@ -1,10 +1,10 @@
 {
-  "title": "Creating a Katacoda Course",
+  "title": "Using ACLs with Nomad",
   "description": "Learn how to create a collection of Katacoda scenarios into a course",
   "details": {
     "steps": [
       {
-        "title": "Step 1 - Pathway Files",
+        "title": "Step 1 - Bootstrap ACLs",
         "text": "step1.md"
       },
       {
@@ -21,6 +21,7 @@
       }
     ],
     "intro": {
+      "courseData": "courseData.sh",
       "text": "intro.md"
     },
     "finish": {
@@ -28,7 +29,8 @@
     }
   },
   "environment": {
-    "uilayout": "editor-terminal"
+    "uilayout": "editor-terminal",
+    "uimessage1": "\u001b[32mYour Interactive Bash Terminal.\u001b[m\r\n"
   },
   "backend": {
     "imageid": "node"
