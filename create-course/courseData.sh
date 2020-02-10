@@ -42,6 +42,7 @@ EOF
 
   cat > /etc/consul.d/config.hcl <<EOF
 bootstrap_expect = 1
+bind_addr = "{{GetInterfaceIP \"ens3\"}}"
 client_addr = "0.0.0.0"
 data_dir = "/opt/consul/data"
 datacenter = "dc1"
