@@ -7,7 +7,7 @@
     "steps": [
       {
         "title": "Step 1 - Bootstrap ACLs",
-        "text": "step1.md"
+        "text": "step1.md",
         "files": [
           "/etc/nomad.d/config.nomad"
         ]
