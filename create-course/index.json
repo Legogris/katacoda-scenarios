@@ -1,11 +1,16 @@
 {
   "title": "Using ACLs with Nomad",
   "description": "Learn how to create a collection of Katacoda scenarios into a course",
+  "difficulty": "intermediate",
+  "time": "20-40 minutes",
   "details": {
     "steps": [
       {
         "title": "Step 1 - Bootstrap ACLs",
         "text": "step1.md"
+        "files": [
+          "/etc/nomad.d/config.nomad"
+        ]
       },
       {
         "title": "Step 2 - Reusing Scenarios",
@@ -30,7 +35,11 @@
   },
   "environment": {
     "uilayout": "editor-terminal",
-    "uimessage1": "\u001b[32mYour Interactive Bash Terminal.\u001b[m\r\n"
+    "uimessage1": "\u001b[32mYour Interactive Bash Terminal.\u001b[m\r\n",
+    "dashboards": [
+      {"name": "Nomad UI", "port": 4646}, 
+      {"name": "Consul UI", "port": 8200}
+    ],
   },
   "backend": {
     "imageid": "ubuntu"

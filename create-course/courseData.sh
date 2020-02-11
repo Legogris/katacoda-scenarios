@@ -114,3 +114,6 @@ systemctl enable consul
 systemctl enable nomad
 systemctl start consul
 systemctl start nomad
+
+ln -s /etc/nomad.d
+ln -s /etc/consul.d
