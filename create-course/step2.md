@@ -1,21 +1,26 @@
-A Katacoda course is defined by creating a pathway file. The pathway defines which scenarios should be included in the course and the order to display them.
+Now that your node is configured and has an enabled ACL subsystem, you need to
+bootstrap the ACL subsystem. Bootstrapping will create an initial management
+token. Nomad will also immediately start enforcing ACL policies.
 
-The collection of examples contains two courses, one to describe all the Katacoda content and another to describe the key Katacoda environments.
+Nomad uses default-deny access controls, so bootstrapping the ACL subsystem will
+create an interruption of service to clusters for jobs with no token. You can s
+### Enable ACL subsystem in configuration
 
-## Clone Example
+We need to enable the ACL subsystem. This requires a change to the Nomad
+configuration.
 
-Clone the example repository with the command `git clone https://github.com/katacoda/scenario-examples.git katacoda-scenario-examples`{{execute}}
-
-Within the root of a repository, a course has been created called `uilayouts`. The contents of the course have been defined as `katacoda-scenario-examples/uilayouts-pathway.json`{{open}}.
-
-Within the JSON file, the courses element defines each scenario. For example:
-
-<pre class="file">
-{
-    "course_id": "uilayout-terminal",
-    "title": "Scenario with Terminal UI",
-    "description": "Katacoda Scenario Example"
-},
+<pre class="file" data-target="clipboard">
+acl {
+  enabled = true
+}
 </pre>
 
-The **course_id** is the scenario name directory within the course directory. For example `ls katacoda-scenario-examples/uilayouts/uilayout-terminal`{{execute}}. The **title** and **description** are shown on the course page.
+The ACL stanza should be located at the top-level of the configuration.
+Paste this ACL stanza above the `client` stanza in the config.hcl file.
+
+### Restart the nomad service
+
+Now that you have modified the configuration, you will need to restart the Nomad
+process to pick up the configuration changes.
+
+Run the `systemctl restart nomad`{{execute}} command to restart Nomad now.

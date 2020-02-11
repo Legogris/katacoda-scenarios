@@ -17,17 +17,9 @@ install_zip "consul" "https://releases.hashicorp.com/consul/1.6.3/consul_1.6.3_l
 mkdir -p /etc/nomad.d /etc/consul.d 
 mkdir -p /opt/nomad/data /opt/consul/data
 
-echo "Creating Nomad configuration file..."
-  cat > /etc/nomad.d/logging.hcl <<EOF
+cat > /etc/nomad.d/config.hcl <<EOF
+data_dir  = "/opt/nomad/data"
 log_level = "DEBUG"
-EOF
-
-  cat > /etc/nomad.d/node.hcl <<EOF
-data_dir = "/opt/nomad/data"
-server {
-  enabled = true
-  bootstrap_expect = 1
-}
 
 client {
   enabled = true
@@ -38,23 +30,29 @@ plugin "raw_exec" {
     enabled = true
   }
 }
-EOF
 
-  cat > /etc/consul.d/config.hcl <<EOF
-bootstrap_expect = 1
-bind_addr = "{{GetInterfaceIP \"ens3\"}}"
-client_addr = "0.0.0.0"
-data_dir = "/opt/consul/data"
-datacenter = "dc1"
-log_level = "DEBUG"
-server = true
-connect {
- enabled = true
+server {
+  enabled          = true
+  bootstrap_expect = 1
 }
-ui = true
 EOF
 
-  cat > /etc/systemd/system/nomad.service <<EOF
+cat > /etc/consul.d/config.hcl <<EOF
+bind_addr        = "{{GetInterfaceIP \"ens3\"}}"
+bootstrap_expect = 1
+client_addr      = "0.0.0.0"
+data_dir         = "/opt/consul/data"
+datacenter       = "dc1"
+log_level        = "DEBUG"
+server           = true
+ui               = true
+
+connect {
+  enabled = true
+}
+EOF
+
+cat > /etc/systemd/system/nomad.service <<EOF
 [Unit]
 Description=Nomad
 Documentation=https://nomadproject.io/docs/
