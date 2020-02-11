@@ -1,26 +1,29 @@
-Now that your node is configured and has an enabled ACL subsystem, you need to
-bootstrap the ACL subsystem. Bootstrapping will create an initial management
-token. Nomad will also immediately start enforcing ACL policies.
-
-Nomad uses default-deny access controls, so bootstrapping the ACL subsystem will
-create an interruption of service to clusters for jobs with no token. You can s
-### Enable ACL subsystem in configuration
-
-We need to enable the ACL subsystem. This requires a change to the Nomad
-configuration.
-
-<pre class="file" data-target="clipboard">
-acl {
-  enabled = true
+<style type="text/css">
+.alert {
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
 }
-</pre>
 
-The ACL stanza should be located at the top-level of the configuration.
-Paste this ACL stanza above the `client` stanza in the config.hcl file.
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
 
-### Restart the nomad service
+</style>
 
-Now that you have modified the configuration, you will need to restart the Nomad
-process to pick up the configuration changes.
+Once the ACL system is enabled, you need to generate the initial token. This
+first management token is used to bootstrap the system. Care should be taken not
+to lose all of your management tokens. If you do, you will need to re-bootstrap
+the ACL subsystem.
 
-Run the `systemctl restart nomad`{{execute}} command to restart Nomad now.
+<div class="alert alert-danger">
+**Warning**: Bootstrapping the ACL subsystem will interrupt access to your cluster.
+<br />
+Once the nomad acl bootstrap command is run, Nomad's default-deny policy will
+become enabled. You should have an acceptable anonymous policy prepared and
+ready to submit immediately after bootstrapping.
+</div>
+

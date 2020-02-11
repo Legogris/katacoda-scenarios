@@ -6,19 +6,19 @@
   "details": {
     "steps": [
       {
-        "title": "Step 1 - Bootstrap ACLs",
+        "title": "Configure Nomad for ACLs",
         "text": "step1.md"
       },
       {
-        "title": "Step 2 - Reusing Scenarios",
+        "title": "Bootstrap the ACL System",
         "text": "step2.md"
       },
       {
-        "title": "Step 3 - Using katacoda CLI to create a course",
+        "title": "Upload an Anonymous Policy",
         "text": "step3.md"
       },
       {
-        "title": "Step 4 - Using katacoda CLI to add existing scenarios to a course",
+        "title": "Create a Management Token",
         "text": "step4.md"
       }
     ],
@@ -30,9 +30,7 @@
       "text": "finish.md"
     }
   },
-  "files": [
-    "/etc/nomad.d/config.hcl"
-  ],
+  "files": [],
   "environment": {
     "uilayout": "editor-terminal",
     "uimessage1": "\u001b[32mYour Interactive Bash Terminal.\u001b[m\r\n",
