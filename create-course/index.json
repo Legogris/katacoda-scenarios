@@ -7,10 +7,7 @@
     "steps": [
       {
         "title": "Step 1 - Bootstrap ACLs",
-        "text": "step1.md",
-        "files": [
-          "/etc/nomad.d/config.nomad"
-        ]
+        "text": "step1.md"
       },
       {
         "title": "Step 2 - Reusing Scenarios",
@@ -33,6 +30,9 @@
       "text": "finish.md"
     }
   },
+  "files": [
+    "/etc/nomad.d/config.nomad"
+  ],
   "environment": {
     "uilayout": "editor-terminal",
     "uimessage1": "\u001b[32mYour Interactive Bash Terminal.\u001b[m\r\n",
