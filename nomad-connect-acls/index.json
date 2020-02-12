@@ -3,6 +3,7 @@
   "description": "Learn how to run Nomad jobs that leverage Consul Connect for ACL-enabled Consul clusters.",
   "difficulty": "intermediate",
   "time": "20-40 minutes",
+  "icon": "fa-nomad",
   "details": {
     "steps": [
       {
