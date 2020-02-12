@@ -12,7 +12,7 @@ install_zip()
 }
 
 install_zip "nomad" "https://releases.hashicorp.com/nomad/0.10.4-rc1/nomad_0.10.4-rc1_linux_amd64.zip"
-install_zip "consul" "https://releases.hashicorp.com/consul/1.6.3/consul_1.7.0_linux_amd64.zip"
+install_zip "consul" "https://releases.hashicorp.com/consul/1.7.0/consul_1.7.0_linux_amd64.zip"
 
 mkdir -p /etc/nomad.d /etc/consul.d
 mkdir -p /opt/nomad/data /opt/consul/data
@@ -49,6 +49,10 @@ ui               = true
 
 connect {
   enabled = true
+}
+
+ports {
+  grpc = 8502
 }
 EOF
 
