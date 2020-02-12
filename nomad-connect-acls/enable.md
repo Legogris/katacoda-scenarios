@@ -9,9 +9,6 @@ acl {
 }
 </pre>
 
-Run the `systemctl restart consul`{{execute}} command to restart Consul to load
-these changes.
+Run the `systemctl restart consul`{{execute}} command to restart Consul to load these changes.
 
-Next, bootstrap the Consul ACL subsystem. Run `consul acl bootstrap | tee
-consul.bootstrap`{{execute}} to bootstrap ACLs, generate your first token and
-capture the output into the `consul.bootstrap` file.
+Next, bootstrap the Consul ACL subsystem. Run `consul acl bootstrap | tee consul.bootstrap`{{execute}} to bootstrap ACLs, generate your first token and capture the output into the `consul.bootstrap` file.
