@@ -1,0 +1,1 @@
+(( $(grep SecretID 2>/dev/null) >= 1 )) && echo \"done\"

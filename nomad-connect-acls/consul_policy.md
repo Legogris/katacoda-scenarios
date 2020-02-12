@@ -3,7 +3,7 @@ You need to create a policy for the Consul Agents.
 First, load the management token out of your bootstrap file - `export CONSUL_HTTP_TOKEN=$(awk '/SecretID/ {print $2}' consul.bootstrap)`{{execute}}
 
 Verify that your token is working by running `consul members`{{execute}}. If everything
-is going correctly, you should see output similar this.
+is working correctly, you should see output similar this.
 
 ```shell
 $ consul members
@@ -24,6 +24,33 @@ service_prefix "" {
 
 Create the policy by uploading this file using the `consul acl policy create -name "consul-agent-token" -description "Consul Agent Token Policy" -rules @consul-agent-policy.hcl`{{execute}} command.
 
-Generate a token associated with this policy and save it to a file named consul-agent.token by running `consul acl token create -description "Consul Agent Token" -policy-name "consul-agent-token | tee consul-agent.token`{{execute}}
+```shell
+$ consul acl policy create -name "consul-agent-token" -description "Consul Agent Token Policy" -rules @consul-agent-policy.hcl
+ID:           aec3686a-e475-060e-5a39-263a5c0f298b
+Name:         consul-agent-token
+Description:  Consul Agent Token Policy
+Datacenters:
+Rules:
+node_prefix "" {
+   policy = "write"
+}
+service_prefix "" {
+   policy = "read"
+}
+```
+
+
+Generate a token associated with this policy and save it to a file named consul-agent.token by running `consul acl token create -description "Consul Agent Token" -policy-name "consul-agent-token" | tee consul-agent.token`{{execute}}
+
+```
+$ consul acl token create -description "Consul Agent Token" -policy-name "consul-agent-token" | tee consul-agent.token
+AccessorID:       fa2226a1-98f8-d359-5957-b494ed691b79
+SecretID:         b0c5988e-71eb-d0b0-88d3-504009163d24
+Description:      Consul Agent Token
+Local:            false
+Create Time:      2020-02-12 22:15:10.816197709 +0000 UTC
+Policies:
+   aec3686a-e475-060e-5a39-263a5c0f298b - consul-agent-token
+```
 
 In the next step, we will configure the Consul agent to use this token.
