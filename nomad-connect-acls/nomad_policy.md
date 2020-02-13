@@ -13,6 +13,9 @@ host01  172.17.0.25:8301  alive   server  1.7.0  2         dc1  <all>
 
 Now, create the Nomad client and server policy files
 
+Use the `touch nomad-server-policy.hcl`{{execute}} to create blank policy file.
+Open it in the editor and add this content.
+
 <pre class="file" data-filename="nomad-server-policy.hcl" data-target="replace">
 agent_prefix "" {
   policy = "read"
@@ -20,6 +23,9 @@ agent_prefix "" {
 
 acl = "write"
 </pre>
+
+Use the `touch nomad-client-policy.hcl`{{execute}} to create another blank
+policy file. Open it in the editor and add this content.
 
 <pre class="file" data-filename="nomad-client-policy.hcl" data-target="replace">
 agent_prefix "" {
