@@ -60,6 +60,11 @@ Create a blank job file by running `touch countdash.nomad`{{execute}}. Open the 
      }
    }
  }
-
-
 </pre>
+
+Run the job by calling `nomad run countdash.nomad`{{execute}}.
+
+```shell
+```
+
+Open the Countdash interface by clicking the "Countdash UI" tab above the terminal.
