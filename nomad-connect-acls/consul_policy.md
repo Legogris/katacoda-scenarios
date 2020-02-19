@@ -11,12 +11,12 @@ Node    Address           Status  Type    Build  Protocol  DC   Segment
 host01  172.17.0.25:8301  alive   server  1.7.0  2         dc1  <all>
 ```
 
-Use the `touch nomad-server-policy.hcl`{{execute}} to create a blank policy file.
+Use the `touch consul-agent-policy.hcl`{{execute}} to create a blank policy file.
 Open it in the editor and add this content.
 
 Now, create the Consul agent policy file
 
-<pre class="file" data-filename="nomad-server-policy.hcl" data-target="replace">node_prefix "" {
+<pre class="file" data-filename="consul-agent-policy.hcl" data-target="replace">node_prefix "" {
    policy = "write"
 }
 service_prefix "" {
