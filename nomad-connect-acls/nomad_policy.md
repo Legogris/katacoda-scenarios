@@ -18,15 +18,58 @@ Open it in the editor and add this content.
 
 <pre class="file" data-filename="nomad-server-policy.hcl" data-target="replace">
 agent_prefix "" {
-  policy = "read"
+  policy = "write"
+}
+
+node_perfix "" {
+  policy = "write"
 }
 
 service_prefix "nomad" {
   policy = "write"
 }
+
 acl = "write"
 </pre>
 
+Create the Nomad server policy by uploading this file using the 
+`consul acl policy create -name "nomad-server-token" -description "Nomad Server Token Policy" -rules @nomad-server-policy.hcl`{{execute}}
+command.
+
+```shell
+$ consul acl policy create -name "nomad-server-token" -description "Nomad Server Token Policy" -rules @nomad-server-policy.hcl
+ID:           aec3686a-e475-060e-5a39-263a5c0f298b
+Name:         nomad-server-token
+Description:  Nomad Server Token Policy
+Datacenters:
+Rules:
+agent_prefix "" {
+  policy = "write"
+}
+node_perfix "" {
+  policy = "write"
+}
+service_prefix "nomad" {
+  policy = "write"
+}
+acl = "write"
+```
+
+Generate a token associated with this policy and save it to a file named nomad-agent.token by running
+`consul acl token create -description "Nomad Demo Agent Token" -policy-name "nomad-server-token" | tee nomad-agent.token`{{execute}}
+
+```shell
+$ consul acl token create -description "Nomad Demo Agent Token" -policy-name "nomad-server-token" | tee nomad-agent.token
+AccessorID:       a073f54a-b51a-59ae-a014-6e95564885ea
+SecretID:         427d2bb2-9c43-5d54-39ce-d6115c5c10d9
+Description:      Nomad Demo Agent Token
+Local:            false
+Create Time:      2020-02-12 22:30:42.402962642 +0000 UTC
+Policies:
+   fed881c2-a9c1-b89d-3941-056fca77eb17 - nomad-server-token
+```
+
+<!---
 Use the `touch nomad-client-policy.hcl`{{execute}} to create another blank
 policy file. Open it in the editor and add this content.
 
@@ -44,14 +87,6 @@ service_prefix "" {
 Notice that the policy includes write access to the services API. Nomad clients
 need this access when starting a Consul-enabled task.  Nomad servers require
 
-Create the Nomad server policy by uploading this file using the 
-`consul acl policy create -name "nomad-server-token" -description "Nomad Server Token Policy" -rules @nomad-server-policy.hcl`{{execute}}
-command.
-
-Generate a token associated with this policy and save it to a file named nomad-agent.token by running
-`consul acl token create -description "Nomad Demo Agent Token" -policy-name "nomad-server-token" | tee nomad-agent.token`{{execute}}
-
-<!-- 
 Create the Nomad server policy by uploading this file using the `consul acl policy create -name "nomad-server-token" -description "Nomad Server Token Policy" -rules @nomad-server-policy.hcl`{{execute}} command.
 
 ```shell

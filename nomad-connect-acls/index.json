@@ -9,7 +9,8 @@
       {
         "title": "Enabling and bootstrapping Consul ACLs",
         "text": "enable.md",
-        "code": "introWait.sh"
+        "code": "introWait.sh",
+        "verify": "enable.md.verify.sh"
       },
       {
         "title": "Creating Consul agent policy and token",
@@ -49,7 +50,8 @@
     },
     "assets": {
       "host01": [
-        {"file":"*","target":"/var/tmp"}
+        {"file":"*","target":"/var/tmp"},
+        {"file":"waitIntro.sh", "target":"/usr/local/bin", "chmod":"+x"}
       ]
     }
   },
