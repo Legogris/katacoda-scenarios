@@ -11,10 +11,9 @@ Node    Address           Status  Type    Build  Protocol  DC   Segment
 host01  172.17.0.25:8301  alive   server  1.7.0  2         dc1  <all>
 ```
 
-Now, create the Nomad client and server policy files
-
-Use the `touch nomad-server-policy.hcl`{{execute}} to create blank policy file.
-Open it in the editor and add this content.
+Now to create the Nomad agent policy file, run `touch nomad-server-policy.hcl`{{execute}}
+to create a blank file. Open `nomad-server-policy.hcl`{{open}} in the editor and
+add this content.
 
 <pre class="file" data-filename="nomad-server-policy.hcl" data-target="replace">
 agent_prefix "" {

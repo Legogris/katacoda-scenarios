@@ -1,7 +1,7 @@
-Open the `consul.d/config.hcl`{{open}} file and add this stanza anywhere in the
+Open the `~/consul.d/config.hcl`{{open}} file and add this stanza anywhere in the
 top level.
 
-<pre class="file" data-target="consul.d/config.hcl">
+<pre class="file" data-target="~/consul.d/config.hcl">
 acl {
   enabled                  = true
   default_policy           = "deny"
@@ -19,15 +19,14 @@ into the `consul.bootstrap` file.
 
 ```shell
 $ consul acl bootstrap | tee consul.bootstrap
-AccessorID:       8f46e9c0-5244-6356-8b72-69963ac907ba
-SecretID:         5c70aced-216e-960c-b31e-75c7b7974bf1
+AccessorID:       e57b446b-2da0-bce2-f01c-6c0134d8e19b
+SecretID:         bba19e7c-9f47-2b08-f0ea-e1bca43ba9c5
 Description:      Bootstrap Token (Global Management)
 Local:            false
-Create Time:      2020-02-20 15:03:25.460760726 +0000 UTC
+Create Time:      2020-02-20 17:01:13.105174927 +0000 UTC
 Policies:
    00000000-0000-0000-0000-000000000001 - global-management
-
 ```
 
-If you receive an error referring to "Legacy Mode", wait a few seconds and try
-the command again.
+If you receive an error saying "The ACL system is currently in legacy mode.",
+wait a few seconds and try the command again.
