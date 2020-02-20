@@ -48,7 +48,7 @@
     },
     "assets": {
       "host01": [
-        {"file":"*","/var/tmp"}
+        {"file":"*","target":"/var/tmp"}
       ]
     }
   },
