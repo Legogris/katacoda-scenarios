@@ -21,6 +21,9 @@ agent_prefix "" {
   policy = "read"
 }
 
+service_prefix "nomad" {
+  policy = "write"
+}
 acl = "write"
 </pre>
 
@@ -41,13 +44,21 @@ service_prefix "" {
 Notice that the policy includes write access to the services API. Nomad clients
 need this access when starting a Consul-enabled task.  Nomad servers require
 
+Create the Nomad server policy by uploading this file using the 
+`consul acl policy create -name "nomad-server-token" -description "Nomad Server Token Policy" -rules @nomad-server-policy.hcl`{{execute}}
+command.
+
+Generate a token associated with this policy and save it to a file named nomad-agent.token by running
+`consul acl token create -description "Nomad Demo Agent Token" -policy-name "nomad-server-token" | tee nomad-agent.token`{{execute}}
+
+<!-- 
 Create the Nomad server policy by uploading this file using the `consul acl policy create -name "nomad-server-token" -description "Nomad Server Token Policy" -rules @nomad-server-policy.hcl`{{execute}} command.
 
 ```shell
-$ consul acl policy create -name "consul-agent-token" -description "Consul Agent Token Policy" -rules @consul-agent-policy.hcl
+$ consul acl policy create -name "nomad-server-token" -description "Nomad Server Token Policy" -rules @nomad-server-policy.hcl
 ID:           aec3686a-e475-060e-5a39-263a5c0f298b
-Name:         consul-agent-token
-Description:  Consul Agent Token Policy
+Name:         nomad-server-token
+Description:  Nomad Server Token Policy
 Datacenters:
 Rules:
 node_prefix "" {
@@ -89,5 +100,6 @@ Policies:
    fed881c2-a9c1-b89d-3941-056fca77eb17 - nomad-server-token
    04a88c9a-bf4e-783d-a54e-844be7beb2ea - nomad-client-token
 ```
+-->
 
 In the next step, we will configure Nomad to use this token.
