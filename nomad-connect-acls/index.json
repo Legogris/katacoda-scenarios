@@ -41,7 +41,8 @@
     ],
     "intro": {
       "courseData": "courseData.sh",
-      "text": "intro.md"
+      "text": "intro.md",
+      "code": "introWait.sh"
     },
     "finish": {
       "text": "finish.md"
