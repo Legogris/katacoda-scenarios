@@ -1,1 +1,1 @@
-/usr/local/bin/waitIntro.sh
+/var/tmp/waitIntro.sh
