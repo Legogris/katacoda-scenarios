@@ -1,3 +1,5 @@
+chmod +x /var/tmp/waitIntro.sh
+
 fix_journal() {
   # This fixes an issue with the katacoda base machine that causes journald to
   # fail on startup - H/T https://serverfault.com/a/800047
