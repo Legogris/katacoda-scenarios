@@ -8,7 +8,8 @@
     "steps": [
       {
         "title": "Enabling and bootstrapping Consul ACLs",
-        "text": "enable.md"
+        "text": "enable.md",
+        "code": "introWait.sh"
       },
       {
         "title": "Creating Consul agent policy and token",
@@ -41,8 +42,7 @@
     ],
     "intro": {
       "courseData": "courseData.sh",
-      "text": "intro.md",
-      "code": "introWait.sh"
+      "text": "intro.md"
     },
     "finish": {
       "text": "finish.md"
