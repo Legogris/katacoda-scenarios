@@ -10,7 +10,6 @@ fix_journal() {
 }
 
 install_cni_plugins() {
-
   if [ ! -d "/opt/cni/bin" ]
   then
     curl -L -o cni-plugins.tgz https://github.com/containernetworking/plugins/releases/download/v0.8.4/cni-plugins-linux-amd64-v0.8.4.tgz
@@ -19,8 +18,7 @@ install_cni_plugins() {
   fi
 }
 
-install_zip()
-{
+install_zip() {
   NAME="$1"
   if [ ! -f "/usr/local/bin/$NAME" ]
   then
@@ -32,17 +30,27 @@ install_zip()
   fi
 }
 
+install_service() {
+  if [ ! -f "/etc/${1}.d/config.hcl" ]
+  then
+    mkdir -p /etc/${1}.d /opt/${1}/data
+    cp /var/tmp/${1}_config.hcl /etc/${1}.d/config.hcl
+    cp /var/tmp/${1}.service /etc/systemd/system/${1}.service
+    systemctl daemon-reload
+  fi
+}
+
 ## main
 
 fix_journal
+install_cni_plugins
+
+install_zip "consul" "https://releases.hashicorp.com/consul/1.7.0/consul_1.7.0_linux_amd64.zip"
+install_service "consul"
 
 install_zip "nomad" "https://releases.hashicorp.com/nomad/0.10.4-rc1/nomad_0.10.4-rc1_linux_amd64.zip"
-install_zip "consul" "https://releases.hashicorp.com/consul/1.7.0/consul_1.7.0_linux_amd64.zip"
+install_service "nomad"
 
-mkdir -p /etc/nomad.d /etc/consul.d /opt/nomad/data /opt/consul/data
-
-systemctl daemon-reload
-systemctl enable consul nomad
 systemctl start consul nomad
 
 ln -s /etc/nomad.d
