@@ -1,6 +1,7 @@
-Open the consul.d/config.hcl file and add this stanza anywhere in the top level
+Open the `consul.d/config.hcl`{{open}} file and add this stanza anywhere in the
+top level.
 
-<pre class="file" data-target="clipboard">
+<pre class="file" data-target="consul.d/config.hcl">
 acl {
   enabled                  = true
   default_policy           = "deny"
