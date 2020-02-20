@@ -20,7 +20,7 @@ agent_prefix "" {
   policy = "write"
 }
 
-node_perfix "" {
+node_prefix "" {
   policy = "write"
 }
 
@@ -45,7 +45,7 @@ Rules:
 agent_prefix "" {
   policy = "write"
 }
-node_perfix "" {
+node_prefix "" {
   policy = "write"
 }
 service_prefix "nomad" {
